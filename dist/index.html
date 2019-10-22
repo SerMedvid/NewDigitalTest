@@ -16,14 +16,17 @@
                 <div class="logo-wrapper">
                     <a href="#" class="logo-link"><span>New</span> Digital</a>
                 </div>
+                <input type="checkbox" name="navButton" id="navButton">
+                <label class="nav-button-label" for="navButton">
+                </label>
                 <nav class="nav-main">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#section-about-us">About Us</a></li>
-                        <li><a href="#section-why-us">Why Us?</a></li>
-                        <li><a href="#section-faq">FAQ</a></li>
-                        <li><a href="#section-post-now">Post Now</a></li>
-                        <li><a href="#section-blog">Blog</a></li>
+                        <li><a class="nav-link" href="#">Home</a> </li>
+                        <li><a class="nav-link" href="#section-about-us">About Us</a></li>
+                        <li><a class="nav-link" href="#section-why-us">Why Us?</a></li>
+                        <li><a class="nav-link" href="#section-faq">FAQ</a></li>
+                        <li><a class="nav-link" href="#section-post-now">Post Now</a></li>
+                        <li><a class="nav-link" href="#section-blog">Blog</a></li>
                     </ul>
                 </nav>
             </div>
@@ -193,5 +196,13 @@
             </div>
         </footer>
     </div>
+    <script>
+        document.querySelector(".nav-main").addEventListener("click", function(e){
+            if(e.target.className == "nav-link") {
+                document.querySelector("#navButton").checked = false;
+            }
+        });
+    
+    </script>
 </body>
 </html>

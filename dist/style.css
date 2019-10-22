@@ -25,6 +25,7 @@
 
 html {
   font-size: 14px;
+  position: relative;
 }
 
 body {
@@ -71,6 +72,37 @@ header .header-inner {
           align-items: center;
 }
 
+.nav-button-label {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  display: none;
+}
+
+.nav-button-label:before {
+  position: absolute;
+  content: "\f0c9";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #0099ff;
+  font-size: 3rem;
+  top: 50%;
+  cursor: pointer;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+#navButton {
+  position: absolute;
+  opacity: 0;
+  left: -500px;
+}
+
+#navButton:checked + .nav-button-label:before {
+  content: "\f00d";
+  color: #fff;
+}
+
 .header-inner .logo-wrapper {
   -ms-flex-preferred-size: 20%;
       flex-basis: 20%;
@@ -105,7 +137,6 @@ header .header-inner {
 }
 
 .nav-main ul li {
-  padding: 0.5rem 1.5rem;
   white-space: nowrap;
   border-radius: 5px;
   -webkit-transition: all 0.5s;
@@ -117,6 +148,8 @@ header .header-inner {
   color: #3c3c3c;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
 }
 
 .nav-main ul li:hover {
@@ -263,6 +296,7 @@ header .header-inner {
   outline: none;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  font-size: 1.4rem;
 }
 
 .about-us .feature-btn:hover {
@@ -362,11 +396,21 @@ header .header-inner {
           column-gap: 2rem;
   row-gap: 2rem;
   margin-top: 4rem;
+  padding: 0;
 }
 
 .why-us .why-us-content li {
   text-align: center;
   font-family: "SourceSansPro-Regular", sans-serif;
+}
+
+.why-us .why-us-content li img {
+  height: 110px;
+  width: auto;
+}
+
+.why-us .why-us-content li p {
+  padding-top: 1.5rem;
 }
 
 #section-contact-us {
@@ -438,8 +482,8 @@ header .header-inner {
 
 .accordion-faq label {
   font-family: "SourceSansPro-Bold", sans-serif;
-  font-size: 1.3rem;
-  padding: 1rem 1rem 1rem 0;
+  font-size: 1.6rem;
+  padding: 1rem 2rem 1rem 0;
   border-bottom: 1px solid #d1d1d1;
   display: block;
   color: #4f4f4f;
@@ -468,6 +512,10 @@ header .header-inner {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   font-family: "SourceSansPro-Regular", sans-serif;
+}
+
+.accordion-faq article p {
+  font-size: 1.3rem;
 }
 
 .accordion-faq input:checked ~ article {
@@ -614,16 +662,44 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-  .header-inner {
+  .header-inner .nav-main {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(0, 153, 255, 0.95), rgba(51, 102, 204, 0.95));
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    width: 0;
+    -webkit-transition: width 0.2s;
+    transition: width 0.2s;
+  }
+  .header-inner .nav-main ul {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    font-size: 3rem;
+    padding: 1.5rem;
+    font-weight: bold;
+    display: none;
   }
-  .header-inner .nav-main ul {
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+  .header-inner .nav-main ul a {
+    color: #fff;
+  }
+  .nav-button-label {
+    display: block;
+    z-index: 21;
+  }
+  #navButton:checked ~ .nav-main {
+    width: 100%;
+  }
+  #navButton:checked ~ .nav-main ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   .feature-post .contact-wrapper {
     -webkit-box-orient: vertical;
@@ -655,6 +731,9 @@ footer {
     -ms-grid-rows: (1fr)[2];
         grid-template-rows: repeat(2, 1fr);
   }
+  .why-us .why-us-content p {
+    font-size: 1.4rem;
+  }
   .contact-us .contact-us-list {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
@@ -678,7 +757,7 @@ footer {
     font-size: 12px;
   }
   .about-us-content .about-us-list li {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   .header-inner .nav-main ul {
     -ms-flex-wrap: wrap;

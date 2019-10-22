@@ -693,6 +693,11 @@ footer {
     display: block;
     z-index: 21;
   }
+  #navButton:checked ~ .nav-button-label {
+    position: fixed;
+    right: 0;
+    top: 1.5rem;
+  }
   #navButton:checked ~ .nav-main {
     width: 100%;
   }
@@ -700,6 +705,7 @@ footer {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    position: fixed;
   }
   .feature-post .contact-wrapper {
     -webkit-box-orient: vertical;
